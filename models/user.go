@@ -38,7 +38,7 @@ func NewUserModel(db *sql.DB) *UserModel {
 }
 
 func (u *UserModel) PostEmploye(e Employee) (success bool, err error) {
-	sqlStatement := "INSERT INTO employeedetails6 (name, salary, age)VALUES ($1, $2, $3)"
+	sqlStatement := "INSERT INTO employeedetails6 (name, salary, age)VALUES ($1, $2, $3) "
 
 	_, err = u.db.Query(sqlStatement, e.Name, e.Salary, e.Age)
 	if err != nil {
@@ -53,14 +53,14 @@ func (u *UserModel) PutEmploye(e Employee) (success bool, err error) {
 
 	_, err = u.db.Query(sqlStatement, e.Name, e.Salary, e.Age, e.Id)
 	if err != nil {
-		return false, err
+		return true, nil
 	} else {
 		return true, nil
 	}
 }
 
 func (u *UserModel) DeleteEmploye(id string) (success bool, err error) {
-	sqlStatement := "DELETE FROM employeedetails6 WHERE id = $1"
+	sqlStatement := "DELETE FROM employeedetails6 WHERE id =$1"
 
 	_, err = u.db.Query(sqlStatement, id)
 	if err != nil {
